@@ -1,5 +1,29 @@
 # Rule Changelog
 
+## 2026-10-04 — Codex usage efficiency standard added
+
+Added `CODEX_USAGE_EFFICIENCY_STANDARD.md`.
+
+This standard reduces unnecessary Codex/repository-agent usage while preserving the stronger existing safety, diagnostics, testing, recovery, and cross-platform rules.
+
+Key additions:
+
+- targeted repository reading instead of routine full-repository rescans;
+- use project memory, roadmap, architecture notes, and verified baselines before rediscovering known information;
+- keep model context small and retrieve only relevant code/log sections;
+- match reasoning effort to task complexity and escalate model/reasoning only when justified and available;
+- preserve the existing two-failure anti-loop and three-failure escalation protections;
+- use targeted builds/tests before broader verification, without skipping required final checks;
+- preserve full diagnostics on disk while reasoning from concise relevant excerpts;
+- prefer small patches over unnecessary rewrites/refactors;
+- keep completion reports concise unless detailed explanation is requested;
+- use known-good versions for regression comparison;
+- avoid scanning both platforms unless shared behavior/compatibility is affected;
+- stop when the requested work and required verification/documentation are complete;
+- explicit priority hierarchy keeps correctness, safety, recoverability, diagnostics/testing, and maintainability above model-usage savings.
+
+The historical `Slot-12` wording from the submitted draft was normalized to the current canonical repository name: `auxz2jz/master-instruction-library`.
+
 ## 2026-09-27 — Diagnostics made mandatory and program-adaptive
 
 Strengthened `DIAGNOSTICS_STANDARD.md` and `GUIDED_TESTING_STANDARD.md`.
