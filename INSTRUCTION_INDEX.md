@@ -49,24 +49,34 @@ Read this file first.
    - Separate checkpoints and verified baselines
    - Concurrent-work and overwrite protection
 
+5. **CODEX_USAGE_EFFICIENCY_STANDARD.md**
+   - Required for Codex/repository-aware coding-agent work.
+   - Targeted repository reading and small context
+   - Reasoning/model escalation only when justified
+   - Targeted builds/tests and concise logs
+   - Small patches and known-good version comparison
+   - Stop when the requested task is complete
+   - Efficiency never overrides correctness, diagnostics, testing, or recoverability
+
 ## Repository maintenance
 
-5. **RULE_INTAKE_WORKFLOW.md**
+6. **RULE_INTAKE_WORKFLOW.md**
    - Defines how new reusable rules are reviewed, merged, split, or added as new categories.
 
-6. **RULE_CHANGELOG.md**
+7. **RULE_CHANGELOG.md**
    - Permanent history of global rules added, changed, clarified, or retired.
 
 ## Required startup order for a new project
 
 1. Read this index.
 2. Read all mandatory global instruction files.
-3. If the project is cross-platform or has multiple platform workers, read CROSS_PLATFORM_COLLABORATION_STANDARD.md before touching project source.
-4. Read the project's own project-memory/checkpoint file.
-5. Read the project's roadmap.
-6. Read the project's testing/diagnostic documentation.
-7. Identify the last user-verified baseline for the platform being worked on.
-8. Only then plan or modify code.
+3. If using Codex or another repository-aware coding agent, read CODEX_USAGE_EFFICIENCY_STANDARD.md.
+4. If the project is cross-platform or has multiple platform workers, read CROSS_PLATFORM_COLLABORATION_STANDARD.md before touching project source.
+5. Read the project's own project-memory/checkpoint file.
+6. Read the project's roadmap.
+7. Read the project's testing/diagnostic documentation.
+8. Identify the last user-verified baseline for the platform being worked on.
+9. Only then plan or modify code.
 
 ## Conflict priority
 
