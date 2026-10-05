@@ -1,6 +1,8 @@
 # Codex Usage Efficiency Standard
 
-This standard applies to software-development work performed with Codex or another repository-aware coding agent under the Master Instruction Library.
+This is a **mandatory global development standard** for all current and future software projects governed by the Master Instruction Library whenever Codex or another repository-aware/model-based coding agent is used.
+
+Projects inherit this standard automatically by referencing and following the Master Instruction Library. Individual project repositories do **not** need to duplicate the full text of this standard.
 
 **Canonical instruction repository:** `auxz2jz/master-instruction-library`
 
@@ -169,6 +171,10 @@ Use High or the highest-capability configuration only when complexity genuinely 
 - repeated failure of the normal approach
 
 Do not use the highest-cost configuration merely because it is available.
+
+Model names, tiers, and available reasoning controls may change over time. The authoritative principle is:
+
+**Use the least expensive model/configuration that can reliably complete the task, and escalate only when task difficulty or evidence shows that escalation is necessary.**
 
 If the active agent cannot change its own model/reasoning setting, record that escalation is recommended rather than pretending it changed models.
 
@@ -401,7 +407,7 @@ Never save model usage by knowingly risking:
 
 Unless another instruction overrides it:
 
-1. Read `INSTRUCTION_INDEX.md` and mandatory rules.
+1. Read `INSTRUCTION_INDEX.md` and mandatory Master Instruction Library rules.
 2. Read current project memory/roadmap/status documentation.
 3. Identify the smallest likely affected file set.
 4. Search for exact symbols/features involved.
