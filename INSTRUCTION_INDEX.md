@@ -50,7 +50,8 @@ Read this file first.
    - Concurrent-work and overwrite protection
 
 5. **CODEX_USAGE_EFFICIENCY_STANDARD.md**
-   - Required for Codex/repository-aware coding-agent work.
+   - Mandatory global standard automatically inherited by all current and future projects that use the Master Instruction Library when Codex/repository-aware/model-based coding agents are involved.
+   - Individual project repositories do not need to duplicate the standard when they already reference and follow this Master Instruction Library.
    - Targeted repository reading and small context
    - Reasoning/model escalation only when justified
    - Targeted builds/tests and concise logs
