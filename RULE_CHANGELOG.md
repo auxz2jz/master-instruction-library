@@ -1,5 +1,16 @@
 # Rule Changelog
 
+## 2026-10-04 — Codex usage efficiency inheritance/model policy clarified
+
+Strengthened the existing `CODEX_USAGE_EFFICIENCY_STANDARD.md` without weakening any existing development, recovery, diagnostics, guided-testing, or cross-platform requirement.
+
+Clarifications:
+
+- the standard is a mandatory global rule inherited automatically by all current and future projects governed by the Master Instruction Library whenever Codex or another repository-aware/model-based coding agent is used;
+- individual project repositories do not need to duplicate the full efficiency standard when they already reference and follow the Master Instruction Library;
+- model names, tiers, and reasoning controls may change over time, so the durable authoritative rule is to use the least expensive model/configuration that can reliably complete the task and escalate only when complexity/evidence requires it;
+- correctness, data/code safety, recoverability, required diagnostics/testing, and maintainability remain higher priority than usage savings.
+
 ## 2026-10-04 — Codex usage efficiency standard added
 
 Added `CODEX_USAGE_EFFICIENCY_STANDARD.md`.
