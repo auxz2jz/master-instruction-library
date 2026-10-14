@@ -1,5 +1,21 @@
 # Rule Changelog
 
+## 2026-10-14 — Codex interruption resilience, continued work, and durable handoffs
+
+Expanded the existing `CODEX_USAGE_EFFICIENCY_STANDARD.md` (sections 20–24) rather than creating a duplicate standard; linked it from `INSTRUCTION_INDEX.md` and `CORE_DEVELOPMENT_RECOVERY_RULES.md`.
+
+New global requirements:
+
+- Continue through approved, useful, verifiable milestones without unnecessary approval requests, but stop when the authorized task is complete or genuinely blocked.
+- If reliably exposed, remaining **account usage** can guide conservative behavior (>30% normal, 15–30% checkpoint priority, <15% complete a safe operation and checkpoint/stop); do not infer it from context-window occupancy, invent values, or claim automatic monitoring.
+- Save concise durable checkpoint/handoff information during work, especially at significant milestones and before risky or lengthy operations; reuse an existing project handoff or establish a documented one if missing.
+- After interruptions or usage exhaustion, recover from the actual checkpoint, Git/source state, user-verified baseline, and relevant tests without reprocessing the entire chat or repository.
+- Treat STOP/PAUSE/SAVE AND STOP as requests to halt at the earliest safe opportunity, while acknowledging that instruction text does not implement an application-level pause button or bypass tool limits.
+- Prevent wasteful identical command retries, speculative work, unnecessary commits, and unsupported claims about automatic resumption.
+
+All existing protections for safety, code/data integrity, mandatory diagnostics, guided testing, and preservation of last user-verified baselines remain in effect.
+
+
 ## 2026-10-04 — Codex usage efficiency inheritance/model policy clarified
 
 Strengthened the existing `CODEX_USAGE_EFFICIENCY_STANDARD.md` without weakening any existing development, recovery, diagnostics, guided-testing, or cross-platform requirement.
