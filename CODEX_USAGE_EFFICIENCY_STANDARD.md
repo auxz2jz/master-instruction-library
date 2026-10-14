@@ -440,6 +440,69 @@ Follow that explicit instruction even when it consumes more model usage, unless 
 
 ---
 
+## 20. Long-running authorized work and milestone boundaries
+
+The user's default preference is to complete as much **authorized, useful, verified work** as possible within the active task without asking for approval after every routine step. Divide substantial work into independently recoverable milestones:
+
+1. Select the next in-scope milestone from the user's request and approved project plan.
+2. Implement it using focused changes.
+3. Run the relevant checks and preserve results.
+4. Save a concise checkpoint at a meaningful boundary.
+5. Continue to the next authorized milestone unless the task is done, a genuine blocker/safety gate requires input, the user stops work, or an actual platform/tool limit prevents continuation.
+
+Do **not** manufacture extra features, run unrelated refactors, or assume permission to continue after the task is complete. Existing rule 16 ("Stop when the task is complete") still applies. A milestone is not automatically the end of a multi-milestone task. A pause or approval request that the platform actually requires must be honored.
+
+## 21. Account usage awareness without fabricated monitoring
+
+Account usage/rate limits, model context-window capacity, and individual tool budgets are **different**. Do not confuse a context-usage indicator with remaining account allowance.
+
+- If the active Codex interface exposes a reliable current **remaining account allowance**, use it when available without repeatedly querying. Above 30%: normal work; 15–30%: prioritize completing in-progress milestones and durable checkpoints; below 15%: finish only the current safe operation, checkpoint, and stop before a substantial new operation.
+- These percentages are **conditional guidance**, not proof Codex has a usage meter or an automatic threshold trigger. If the information is unavailable, stale, or ambiguous, state that and do not invent percentages or deadlines.
+- Do not waste model calls repeatedly trying to obtain unavailable rate-limit information. Do not claim an automatic pause, warning, or usage-based shutdown exists without verifying the actual interface and its capabilities.
+- Continue working in bounded milestones with frequent recovery points when limits cannot be measured. An abrupt hard limit may prevent a final save.
+
+Never deliberately trigger usage errors to estimate remaining allowance. Never enter an automatic retry loop when a limit is reached. Do not promise automatic resumption after an account quota resets unless a verified, user-authorized mechanism exists.
+
+## 22. Lightweight durable handoff during work
+
+Use the project's **existing designated checkpoint/handoff mechanism** when present. Do not require a universal filename or duplicate an established project-memory system. If a project has no suitable concise handoff, create `docs/CODEX_HANDOFF.md` (or an equivalent documented path) as a lightweight recovery entry point, referencing rather than duplicating larger project records.
+
+After each significant milestone and immediately before high-risk, lengthy, or disruptive operations, update the handoff with only the information needed to resume:
+
+- active objective and next **single concrete action**;
+- completed versus incomplete work, with accurate VERIFIED/CANDIDATE/PARTIAL statuses;
+- files changed, current branch/commit and any uncommitted changes;
+- exact build/test commands and outcomes, latest meaningful failures and diagnostic references;
+- last **user-physically-verified baseline** kept separate from unverified work;
+- assumptions/blockers and relevant roadmap or evidence links.
+
+Prefer replacing stale handoff fields rather than growing an endless chronological transcript. Preserve useful full logs and evidence separately where required. Do not commit secrets or personal data, overwrite someone else's changes, create excessive micro-commits, or lose uncommitted work.
+
+Checkpointing is best-effort: saved files and verified Git history survive session loss, but a model blocked mid-operation may not be able to write a final handoff. Update at milestone boundaries, not just at session end.
+
+## 23. Efficient resumption after interrupted or exhausted sessions
+
+When asked to continue, or when a new agent picks up a documented interrupted task:
+
+1. Follow the mandatory startup instructions from the master index. Use verified unchanged local references when permitted; do not blindly re-ingest unrelated source or entire conversation history.
+2. Open the designated current checkpoint/handoff, newest relevant evidence, and exact next action.
+3. Check actual branch/commit, working-tree changes, and affected files. Reconcile any mismatch before editing; source and test evidence outrank stale handoff descriptions.
+4. Confirm the last user-verified baseline and distinguish it from subsequent candidates.
+5. Execute the next supported in-scope step **once**; do not rerun completed investigation, full builds, or identical failed commands without a reason.
+6. Refresh the checkpoint and continue through approved milestones.
+
+Do not silently restart the whole project, repeat already documented analysis, or infer a command succeeded just because it was attempted. If the required evidence is unavailable, request only the specific missing information or checkpoint the blocker.
+
+## 24. Stopping, pausing, and tool-control honesty
+
+Treat user commands such as **STOP**, **PAUSE**, and **SAVE AND STOP** as high-priority interruption requests and stop at the earliest safe opportunity the active tool/interface permits. If tools still allow saving, checkpoint first; do not start another milestone.
+
+Distinguish an **agent instruction to stop at a milestone** from a **real application-level pause/interrupt control**. An instruction file cannot create a Windows Codex pause button, force-interrupt an already executing tool call, or observe account limits that the interface does not expose. Explain which controls are actually verified rather than making promises.
+
+Existing core recovery commands (including `STOP LOOP. CHECKPOINT ONLY.` and `CONTINUE FROM CHECKPOINT.`) remain available and authoritative.
+
+---
+
 ## Primary rule
 
 **Spend model intelligence where intelligence is actually needed.**
