@@ -56,7 +56,11 @@ Read this file first.
    - Reasoning/model escalation only when justified
    - Targeted builds/tests and concise logs
    - Small patches and known-good version comparison
-   - Stop when the requested task is complete
+   - Stop when the requested task is complete; otherwise continue through authorized, recoverable milestones
+   - Account-usage-aware stopping only when reliable usage telemetry is available (no invented thresholds or pause controls)
+   - Lightweight durable handoffs at milestones and before disruptive operations
+   - Restart/recovery from checkpoint, Git state, and relevant evidence instead of replaying entire chats
+   - User stop/pause requests honored at the earliest safe point allowed by the interface
    - Efficiency never overrides correctness, diagnostics, testing, or recoverability
 
 ## Repository maintenance
