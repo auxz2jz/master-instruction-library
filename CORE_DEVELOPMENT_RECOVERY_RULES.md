@@ -308,6 +308,16 @@ For risky or replacement builds, the user may say:
 
 **Checkpoint first. Before making changes, confirm the last physically verified version, exact source/artifact, hash/checksum when available, and current handoff/checkpoint state. Build the next candidate only from that known source or an explicitly approved successor. Do not overwrite the verified baseline.**
 
+## 15. Interruption-safe, low-overhead handoff
+
+For extended development, make progress durable **during** work, not only at the end. After meaningful milestones and before lengthy, high-risk, or disruptive operations, refresh the project's existing checkpoint/handoff and record: current objective, work completed, unfinished work, source/branch/commit and uncommitted changes, latest relevant test/diagnostic results, the user-verified baseline versus unverified candidates, and one exact next action.
+
+Use a designated existing project handoff if available; do not assume every project contains a specific filename. If no concise handoff exists, the agent may establish `docs/CODEX_HANDOFF.md` or a documented equivalent. Keep the entry concise and link to established project records rather than duplicating entire histories. Never discard or overwrite other workers' changes. Protect secrets and sensitive information.
+
+On resumption after usage exhaustion, context loss, restart, or a broken connection, read mandatory project instructions and the current handoff, verify Git/source/test reality, and continue from the first legitimate unfinished step. Do not reflexively reread the complete chat or repository or repeat successful analysis. An abrupt limit may prevent the last checkpoint; reconcile actual files and Git state before proceeding.
+
+For repository-aware coding agents, also follow `CODEX_USAGE_EFFICIENCY_STANDARD.md` sections 20–24 for authorized milestone continuation, honest account-limit visibility, efficient recovery, and user interruption requests. Account limits may be unobservable; no instruction can create an unavailable software pause control. Never relax verified-baseline protection, mandatory diagnostics, or guided testing to save usage.
+
 ## Final rule
 
 Protect working code, preserve recoverable checkpoints, test small changes, use evidence instead of guesses, accurately record failures, and never allow important project knowledge to exist only inside the current chat.
