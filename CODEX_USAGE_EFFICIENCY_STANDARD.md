@@ -503,6 +503,26 @@ Existing core recovery commands (including `STOP LOOP. CHECKPOINT ONLY.` and `CO
 
 ---
 
+## 25. Next-stage model and reasoning recommendation at every checkpoint
+
+At **every meaningful task completion, milestone, backup, or progress checkpoint**, include a **brief, actionable recommendation for the next authorized development stage** in both the user-facing report and the project's existing durable handoff/checkpoint (without duplicating entire history).
+
+Include:
+- **Next task/stage:** the single highest-priority next in-scope action and its principal verification or safety gate. If the authorized task is finished and no further task is approved, say **"No next task authorized"**; do not invent new work.
+- **Recommended model/reasoning:** identify the most economical **available** model or reasoning setting likely to complete that next task reliably (for example Low/Medium/High/highest-capability or the actual controls exposed in the user's tool). If the model menu is unknown, use a **generic reasoning level** instead of guessing product model names.
+- **Why and when to change:** one short complexity/risk explanation; mention whether to keep, raise, or lower the current setting, plus a concrete trigger to escalate (e.g. evidence-based failure, novel hardware/architecture uncertainty) or de-escalate (e.g. routine tests, implementation, documentation).
+- **Usage/recovery:** when relevant, recommend a bounded next milestone and checkpoint timing appropriate to observable usage limits; never invent remaining quota, automatic monitoring or model-switching abilities.
+
+Default to a **one- or two-line report**, for example:
+
+`Next: Validate decompression against stored manifests (targeted offline tests). Recommended: High reasoning; lower to Medium for documentation, escalate only if parser evidence is contradictory. Checkpoint after verification.`
+
+This is a **recommendation, not an automatic setting change**. The user or application must select the model/reasoning control when the agent cannot change it. Apply task-specific safety and testing requirements independently of usage optimization.
+
+Do not spend substantial tokens estimating the optimal model. Reuse the project's current roadmap and results; update the recommendation if the actual next task changes. Never recommend a high-cost setting for routine work without a technical reason.
+
+---
+
 ## Primary rule
 
 **Spend model intelligence where intelligence is actually needed.**
