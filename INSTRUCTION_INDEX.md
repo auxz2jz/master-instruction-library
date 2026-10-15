@@ -8,6 +8,9 @@ Read this file first.
 
 1. **CORE_DEVELOPMENT_RECOVERY_RULES.md**
    - Project memory
+   - Persistent atomic task queue/handoff
+   - Unique task IDs, bounded objectives, dependencies, completion criteria, and verification
+   - Per-task checkpoints and interruption recovery
    - Verified baseline
    - Checkpoints
    - Small-change workflow
@@ -52,6 +55,11 @@ Read this file first.
 5. **CODEX_USAGE_EFFICIENCY_STANDARD.md**
    - Mandatory global standard automatically inherited by all current and future projects that use the Master Instruction Library when Codex/repository-aware/model-based coding agents are involved.
    - Individual project repositories do not need to duplicate the standard when they already reference and follow this Master Instruction Library.
+   - Atomic 2–5 minute task planning when practical, with a unique task ID and explicit completion/verification criteria
+   - Automatic continuation through authorized tasks when resources/permissions allow, without unnecessary approval requests
+   - Per-task checkpoint/handoff plus 20–30 minute long-work checkpoints when practical
+   - Reliable usage-aware thresholds (>50 / 30–50 / 15–30 / <15) and conservative behavior when usage is unknown
+   - Required next-task model/reasoning recommendation and concise task-completion report
    - Targeted repository reading and small context
    - Reasoning/model escalation only when justified
    - Targeted builds/tests and concise logs
