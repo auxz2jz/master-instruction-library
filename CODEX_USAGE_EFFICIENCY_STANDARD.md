@@ -440,28 +440,49 @@ Follow that explicit instruction even when it consumes more model usage, unless 
 
 ---
 
-## 20. Long-running authorized work and milestone boundaries
+## 20. Authorized continuation through atomic tasks
 
-The user's default preference is to complete as much **authorized, useful, verified work** as possible within the active task without asking for approval after every routine step. Divide substantial work into independently recoverable milestones:
+The user's default preference is to complete as much **authorized, useful, verified work** as possible within the approved project scope without asking for approval after every routine operation.
 
-1. Select the next in-scope milestone from the user's request and approved project plan.
-2. Implement it using focused changes.
-3. Run the relevant checks and preserve results.
-4. Save a concise checkpoint at a meaningful boundary.
-5. Continue to the next authorized milestone unless the task is done, a genuine blocker/safety gate requires input, the user stops work, or an actual platform/tool limit prevents continuation.
+For substantial objectives, use the atomic-task structure defined in `CORE_DEVELOPMENT_RECOVERY_RULES.md`:
 
-Do **not** manufacture extra features, run unrelated refactors, or assume permission to continue after the task is complete. Existing rule 16 ("Stop when the task is complete") still applies. A milestone is not automatically the end of a multi-milestone task. A pause or approval request that the platform actually requires must be honored.
+1. Select the next authorized task ID from the current project queue/roadmap.
+2. Confirm its objective, dependencies, completion criteria, verification, model/reasoning recommendation, and any approval/safety gate.
+3. Implement only that bounded task.
+4. Run the required targeted verification.
+5. Save/update the durable checkpoint/handoff.
+6. Review the next authorized task.
+7. Continue automatically when the user has authorized continued development and sufficient permissions, reliable resources, and any available usage information indicate that continuing is appropriate.
 
-## 21. Account usage awareness without fabricated monitoring
+Do **not** request approval after every routine edit/build/test that is already within the approved task. Always stop for genuine user-approval gates, unresolved safety concerns, destructive or irreversible operations that require authorization, missing credentials/permissions, material scope changes, or other real blockers.
+
+Do **not** manufacture extra features, run unrelated refactors, or invent tasks outside the authorized project scope. Existing rule 16 ("Stop when the task is complete") still applies.
+
+## 21. Account usage awareness and protection
 
 Account usage/rate limits, model context-window capacity, and individual tool budgets are **different**. Do not confuse a context-usage indicator with remaining account allowance.
 
-- If the active Codex interface exposes a reliable current **remaining account allowance**, use it when available without repeatedly querying. Above 30%: normal work; 15–30%: prioritize completing in-progress milestones and durable checkpoints; below 15%: finish only the current safe operation, checkpoint, and stop before a substantial new operation.
-- These percentages are **conditional guidance**, not proof Codex has a usage meter or an automatic threshold trigger. If the information is unavailable, stale, or ambiguous, state that and do not invent percentages or deadlines.
-- Do not waste model calls repeatedly trying to obtain unavailable rate-limit information. Do not claim an automatic pause, warning, or usage-based shutdown exists without verifying the actual interface and its capabilities.
-- Continue working in bounded milestones with frequent recovery points when limits cannot be measured. An abrupt hard limit may prevent a final save.
+Use reliable current **remaining account-usage information** when the active coding environment exposes it. Suggested operating thresholds:
 
-Never deliberately trigger usage errors to estimate remaining allowance. Never enter an automatic retry loop when a limit is reached. Do not promise automatic resumption after an account quota resets unless a verified, user-authorized mechanism exists.
+- **Above 50% remaining:** normal atomic-task continuation.
+- **30–50% remaining:** favor efficient/bounded tasks and checkpoint before expensive work.
+- **15–30% remaining:** finish the current safe operation/task, checkpoint, and avoid beginning substantial new work.
+- **Below 15% remaining:** checkpoint and stop before another development task.
+- **Unknown usage:** apply conservative task limits; before expensive work, request or use an updated usage reading if the environment/user can provide one.
+
+These are workflow recommendations, not guarantees that Codex can monitor itself continuously or stop at an exact percentage.
+
+When usage is unknown:
+
+- do not invent a percentage;
+- do not treat context-window occupancy as account allowance;
+- do not treat a previously reported percentage as a live measurement;
+- avoid open-ended work;
+- after **one expensive task or at most two genuinely small tasks**, preserve a durable handoff before continuing unless reliable current usage information becomes available.
+
+Do not waste model calls repeatedly trying to obtain unavailable rate-limit information. Never deliberately trigger a limit to estimate remaining allowance.
+
+If a usage limit is reached, do not enter an automatic retry loop. Never claim automatic resumption after a reset unless an available, verified, user-authorized scheduling/automation mechanism actually exists.
 
 ## 22. Lightweight durable handoff during work
 
@@ -508,10 +529,11 @@ Existing core recovery commands (including `STOP LOOP. CHECKPOINT ONLY.` and `CO
 At **every meaningful task completion, milestone, backup, or progress checkpoint**, include a **brief, actionable recommendation for the next authorized development stage** in both the user-facing report and the project's existing durable handoff/checkpoint (without duplicating entire history).
 
 Include:
-- **Next task/stage:** the single highest-priority next in-scope action and its principal verification or safety gate. If the authorized task is finished and no further task is approved, say **"No next task authorized"**; do not invent new work.
-- **Recommended model/reasoning:** identify the most economical **available** model or reasoning setting likely to complete that next task reliably (for example Low/Medium/High/highest-capability or the actual controls exposed in the user's tool). If the model menu is unknown, use a **generic reasoning level** instead of guessing product model names.
-- **Why and when to change:** one short complexity/risk explanation; mention whether to keep, raise, or lower the current setting, plus a concrete trigger to escalate (e.g. evidence-based failure, novel hardware/architecture uncertainty) or de-escalate (e.g. routine tests, implementation, documentation).
-- **Usage/recovery:** when relevant, recommend a bounded next milestone and checkpoint timing appropriate to observable usage limits; never invent remaining quota, automatic monitoring or model-switching abilities.
+- **Next task ID and action:** the single highest-priority next authorized in-scope task and its principal verification or safety gate. If the authorized task is finished and no further task is approved, say **"No next task authorized"**; do not invent new work.
+- **Recommended model/reasoning:** identify the most economical **available** model or reasoning setting likely to complete that next task reliably. General guidance: Low/Medium for documentation, routine tests, straightforward code and simple fixes; High for complex development/debugging/integration; highest-capability for genuinely difficult reverse engineering, architectural uncertainty, highly complex failures, or repeated evidence-based failure. If the model menu is unknown, use a generic reasoning level rather than guessing product model names.
+- **Why and when to change:** one short complexity/risk explanation; state when to increase or decrease reasoning.
+- **Checkpoint-before-start:** state whether the next task warrants a checkpoint before starting.
+- **Usage/recovery:** when relevant, recommend a bounded next task and checkpoint timing appropriate to observable usage limits; never invent remaining quota, automatic monitoring or model-switching abilities.
 
 Default to a **one- or two-line report**, for example:
 
@@ -522,6 +544,54 @@ This is a **recommendation, not an automatic setting change**. The user or appli
 Do not spend substantial tokens estimating the optimal model. Reuse the project's current roadmap and results; update the recommendation if the actual next task changes. Never recommend a high-cost setting for routine work without a technical reason.
 
 ---
+
+## 26. Atomic task definition, checkpoint cadence, and completion report
+
+For substantial development work, each atomic task should specify:
+
+- unique task ID;
+- specific objective;
+- required inputs/dependencies;
+- expected output;
+- completion criteria;
+- required testing/verification;
+- recommended model/reasoning level;
+- safety restrictions/approval requirements.
+
+Prefer tasks of approximately **2–5 minutes of focused development when practical**. This is a planning guideline, not a runtime/token promise. If the task grows unexpectedly complex, split the remaining work into smaller subtasks before continuing.
+
+After **every completed task**:
+
+1. save relevant source changes;
+2. run required targeted verification;
+3. record completed and unfinished work;
+4. record blockers/errors;
+5. preserve the last user-verified baseline;
+6. create a recoverable Git checkpoint when appropriate;
+7. push safe verified changes when available and authorized;
+8. update the project's existing task/memory/handoff state;
+9. identify the next exact task ID;
+10. provide the concise completion report below.
+
+For long-running work, also refresh a durable checkpoint approximately every **20–30 minutes when practical** and immediately before especially expensive, destructive, risky, or interruption-sensitive operations.
+
+Avoid excessive micro-commits, duplicate documentation, or redundant backup copies. Unfinished work must remain clearly separated from verified working versions.
+
+### Required concise task-completion report
+
+After each task, report:
+
+**COMPLETED TASK:** <task ID + concise result>  
+**VERIFICATION:** <targeted test/build/check + result>  
+**CHECKPOINT/BACKUP:** <commit/checkpoint/handoff or none required>  
+**CURRENT STATUS:** <verified/candidate/partial/blocked + concise state>  
+**NEXT TASK:** <next task ID/action or no next task authorized>  
+**RECOMMENDED MODEL/REASONING:** <least costly suitable available setting>  
+**REASON:** <brief justification and escalation/de-escalation trigger>  
+**USAGE STATUS:** <reliable current reading, stale/unknown, or unavailable — never invented>  
+**CONTINUE OR STOP:** <continue/stop + brief reason>
+
+Keep this report brief unless a failure or safety issue requires more detail.
 
 ## Primary rule
 
