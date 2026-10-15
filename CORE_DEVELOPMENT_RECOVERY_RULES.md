@@ -12,7 +12,11 @@ Each project must maintain permanent project documentation containing at least:
 - current version/build
 - last user-verified working version
 - latest unverified candidate
-- current task
+- current development phase
+- current/active task and unique task ID when task tracking is in use
+- completed tasks
+- pending tasks
+- task dependencies and blockers
 - implementation plan
 - roadmap
 - known bugs and limitations
@@ -21,6 +25,7 @@ Each project must maintain permanent project documentation containing at least:
 - test results
 - diagnostic findings
 - files/results already received
+- latest checkpoint/commit when available
 - exact next action
 
 Another developer or another ChatGPT conversation must be able to continue from saved project files.
@@ -75,6 +80,8 @@ Use:
 **READ → PLAN → RECORD PLAN → CHECKPOINT → MODIFY → BUILD → TEST → ANALYZE → RECORD RESULT → CHECKPOINT → CONTINUE**
 
 Whenever practical, make one logical change at a time, build it, test it, record the result, and understand the result before adding unrelated changes.
+
+For substantial objectives, apply the atomic-task rules in Section 16: break the work into small independently verifiable tasks, complete and verify one task, checkpoint it, identify the exact next task, and only then continue.
 
 ## 5. Checkpoints
 
@@ -318,6 +325,88 @@ On resumption after usage exhaustion, context loss, restart, or a broken connect
 
 For repository-aware coding agents, also follow `CODEX_USAGE_EFFICIENCY_STANDARD.md` sections 20–24 for authorized milestone continuation, honest account-limit visibility, efficient recovery, and user interruption requests. Account limits may be unobservable; no instruction can create an unavailable software pause control. Never relax verified-baseline protection, mandatory diagnostics, or guided testing to save usage.
 
+## 16. Global atomic-task development standard
+
+For every substantial development objective, divide authorized work into small, independently verifiable tasks before or as development proceeds.
+
+A task should be bounded enough that another agent/session can understand exactly what it is supposed to accomplish without replaying the entire project history.
+
+Each task should record, directly or through the project's existing roadmap/task system:
+
+- **Task ID** — unique within the project/workstream.
+- **Objective** — the specific result to achieve.
+- **Inputs/dependencies** — code, files, prior tasks, hardware, data, permissions, or decisions required.
+- **Expected output** — code/artifact/documentation/state expected when complete.
+- **Completion criteria** — objective conditions that define DONE for this task.
+- **Verification** — targeted build/test/inspection required.
+- **Recommended model/reasoning** — least costly available setting likely to complete the task reliably.
+- **Safety/approval gates** — destructive actions, hardware risks, credentials, external writes, user approvals, or other restrictions.
+
+When practical, prefer tasks representing roughly **2–5 minutes of focused development effort**. This is a planning guideline only, not a promise about runtime, tokens, tool duration, or account usage.
+
+If a task becomes unexpectedly broad, ambiguous, or difficult, split the remaining work into smaller subtasks before continuing. Prefer bounded investigations over open-ended exploration when they can answer the same question.
+
+Do not create artificial microtasks that add administrative overhead without improving verification or recovery.
+
+### Per-task completion checkpoint
+
+After each completed atomic task:
+
+1. Save relevant source/document changes.
+2. Run the required targeted verification.
+3. Record what completed.
+4. Record what remains unfinished.
+5. Record errors/blockers and relevant diagnostic references.
+6. Preserve the last user-verified baseline separately from the current candidate.
+7. Create a recoverable Git checkpoint when appropriate.
+8. Push safe, verified changes when a repository is available, the action is authorized, and project workflow permits it.
+9. Update the project's existing memory/handoff/task record concisely.
+10. Record the **next exact task ID and action**.
+
+Do not create excessive micro-commits, redundant backup copies, or duplicate status documents merely to satisfy this rule. Reuse the project's existing roadmap, memory, issue/task list, checkpoint, or handoff system.
+
+For long-running or unusually risky work, also refresh a durable checkpoint approximately every **20–30 minutes when practical**, and immediately before expensive, destructive, difficult-to-reverse, or interruption-sensitive operations.
+
+Unfinished work must remain clearly distinguishable from VERIFIED working versions.
+
+### Persistent task queue and handoff
+
+Every project must maintain a recoverable view of:
+
+- current development phase;
+- completed tasks;
+- active task;
+- pending authorized tasks;
+- dependencies/blockers;
+- last user-verified version;
+- current development candidate;
+- latest checkpoint/commit when available;
+- exact next action.
+
+Do not require universal filenames. Reuse existing project records where suitable. If none exist, establish a lightweight mechanism.
+
+Keep the current-state record concise. Replace stale current-status fields instead of continually appending full session transcripts. Preserve historical evidence in the appropriate changelog, Git history, diagnostics, or test records.
+
+### Interruption recovery
+
+After usage exhaustion, context loss, application closure, connection problems, or another interrupted session:
+
+1. Read the applicable Master Instruction Library rules and the project's latest valid handoff/task record.
+2. Inspect actual source files and Git status before assuming the saved description is current.
+3. Preserve and understand uncommitted changes.
+4. Confirm the last user-verified baseline.
+5. Identify the current candidate and unfinished task.
+6. Resume from the first legitimate unfinished task.
+7. Do not repeat completed analysis, builds, or tests without new justification.
+
+Never reset, discard, clean, or overwrite uninspected work merely to restore a clean repository.
+
+If no valid checkpoint exists, reconstruct state from the actual filesystem, Git history/status, test evidence, diagnostics, and project documentation before deciding how to continue.
+
+For repository-aware/model-based coding agents, the detailed continuation, usage-protection, and next-model recommendations in `CODEX_USAGE_EFFICIENCY_STANDARD.md` also apply.
+
 ## Final rule
 
 Protect working code, preserve recoverable checkpoints, test small changes, use evidence instead of guesses, accurately record failures, and never allow important project knowledge to exist only inside the current chat.
+
+For substantial authorized work: **break it down, complete one task, verify it, save it, record the next task, and continue only when appropriate.**
