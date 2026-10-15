@@ -1,5 +1,11 @@
 # Rule Changelog
 
+## 2026-10-14 — Next-stage model recommendation at checkpoints
+
+Extended `CODEX_USAGE_EFFICIENCY_STANDARD.md` with section 25 and updated `INSTRUCTION_INDEX.md`.
+
+Every meaningful completed task, backup, or checkpoint should now briefly report the next authorized task and the least costly suitable available model/reasoning level, a reason for keeping/raising/lowering it, and a trigger to reconsider the setting. Record this next-stage recommendation in the existing durable handoff so new sessions do not repeat model-selection analysis. Unknown model menus or quota must not be invented, and agents must not pretend to change settings automatically. Existing safety, validation and approval gates remain intact.
+
 ## 2026-10-14 — Codex interruption resilience, continued work, and durable handoffs
 
 Expanded the existing `CODEX_USAGE_EFFICIENCY_STANDARD.md` (sections 20–24) rather than creating a duplicate standard; linked it from `INSTRUCTION_INDEX.md` and `CORE_DEVELOPMENT_RECOVERY_RULES.md`.
