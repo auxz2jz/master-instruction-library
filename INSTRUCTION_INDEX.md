@@ -62,6 +62,7 @@ Read this file first.
    - Restart/recovery from checkpoint, Git state, and relevant evidence instead of replaying entire chats
    - User stop/pause requests honored at the earliest safe point allowed by the interface
    - Efficiency never overrides correctness, diagnostics, testing, or recoverability
+   - Every milestone, backup, and checkpoint recommends the next task's suitable model/reasoning setting with brief rationale and escalation trigger
 
 ## Repository maintenance
 
