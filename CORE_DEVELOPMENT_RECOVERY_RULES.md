@@ -323,7 +323,7 @@ Use a designated existing project handoff if available; do not assume every proj
 
 On resumption after usage exhaustion, context loss, restart, or a broken connection, read mandatory project instructions and the current handoff, verify Git/source/test reality, and continue from the first legitimate unfinished step. Do not reflexively reread the complete chat or repository or repeat successful analysis. An abrupt limit may prevent the last checkpoint; reconcile actual files and Git state before proceeding.
 
-For repository-aware coding agents, also follow `CODEX_USAGE_EFFICIENCY_STANDARD.md` sections 20–24 for authorized milestone continuation, honest account-limit visibility, efficient recovery, and user interruption requests. Account limits may be unobservable; no instruction can create an unavailable software pause control. Never relax verified-baseline protection, mandatory diagnostics, or guided testing to save usage.
+For repository-aware coding agents, also follow `CODEX_USAGE_EFFICIENCY_STANDARD.md` sections 20–26 for authorized milestone continuation, honest account-limit visibility, efficient recovery, and user interruption requests. Account limits may be unobservable; no instruction can create an unavailable software pause control. Never relax verified-baseline protection, mandatory diagnostics, or guided testing to save usage.
 
 ## 16. Global atomic-task development standard
 
