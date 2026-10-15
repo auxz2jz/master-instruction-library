@@ -1,5 +1,27 @@
 # Rule Changelog
 
+## 2026-10-14 — Global atomic-task development and usage protection
+
+Strengthened `CORE_DEVELOPMENT_RECOVERY_RULES.md` and `CODEX_USAGE_EFFICIENCY_STANDARD.md`, and updated `INSTRUCTION_INDEX.md`.
+
+This change establishes a mandatory global atomic-task workflow for all current and future software projects governed by the Master Instruction Library while preserving existing diagnostics, guided testing, recovery, security, verified-baseline, and cross-platform requirements.
+
+Key additions:
+
+- substantial objectives are divided into small independently verifiable tasks with unique task IDs, explicit objectives, dependencies, outputs, completion criteria, verification, model/reasoning recommendations, and safety/approval gates;
+- roughly 2–5 minutes of focused development is the preferred task size when practical, explicitly as a planning guideline rather than a runtime/token guarantee;
+- every completed task requires source saving, targeted verification, concise state/handoff updates, verified-baseline preservation, an appropriate recoverable checkpoint, and the exact next task;
+- long-running work also refreshes durable checkpoints about every 20–30 minutes when practical and before expensive/risky/interruption-sensitive operations;
+- projects maintain a concise persistent task queue/handoff covering phase, completed/active/pending tasks, blockers, verified baseline, current candidate, checkpoint/commit, and exact next action;
+- authorized work may continue automatically between bounded tasks without unnecessary approval prompts, while destructive operations, safety gates, scope changes, missing permissions, and genuine blockers still require a stop/approval;
+- reliable remaining account-usage information uses suggested thresholds above 50%, 30–50%, 15–30%, and below 15%; stale/unknown usage is never invented or confused with context-window occupancy;
+- when usage is unknown, the agent uses bounded work and preserves a handoff after one expensive task or at most two genuinely small tasks before further substantial work;
+- interrupted sessions recover from actual handoff, Git/filesystem state, diagnostics, tests, and the last user-verified baseline rather than replaying completed work;
+- each task/checkpoint reports the next task ID, least costly suitable model/reasoning level, brief rationale, escalation/de-escalation trigger, checkpoint-before-start guidance, honest usage status, and whether to continue or stop;
+- a concise mandatory task-completion report format was added.
+
+No individual project repositories were modified. Existing projects inherit these rules when they read the updated Master Instruction Library.
+
 ## 2026-10-14 — Next-stage model recommendation at checkpoints
 
 Extended `CODEX_USAGE_EFFICIENCY_STANDARD.md` with section 25 and updated `INSTRUCTION_INDEX.md`.
